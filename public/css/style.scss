@@ -1,0 +1,152 @@
+@import "../scss/var";
+@import "../scss/vendor";
+@import "../scss/mixin";
+
+body {
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 300;
+}
+
+a,
+a:hover {
+    text-decoration: none;
+}
+
+.main-header {
+    width: 100vw;
+    height: 5rem;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)) $main-color;
+
+    & .navbar-brand {
+        color: $text-color;
+        animation: music 2s linear infinite;
+
+        & .fas {
+            font-size: 4rem;
+        }
+
+        @keyframes music {
+            0% {
+                transform: rotate(5deg);
+            }
+
+            25% {
+                transform: rotate(-5deg);
+            }
+
+            50% {
+                transform: rotate(-5deg);
+            }
+
+            100% {
+                transform: rotate(5deg);
+            }
+        }
+
+    }
+
+    & .navbar-nav {
+        padding-left: 15rem;
+
+        & .nav-item .nav-link {
+            font-size: 1.2rem;
+            color: $text-color;
+            text-transform: uppercase;
+            padding-right: 3rem;
+        }
+
+        & .nav-item:last-child>.nav-link {
+            padding-right: 0%;
+        }
+    }
+
+    & .nav-item:hover>.nav-link,
+    & .navbar-brand:hover,
+    & .navbar-brand:hover>.fas {
+        color: $primary-color;
+    }
+
+    & .my_btn {
+        @include mybtn;
+
+
+        &:hover {
+            @include hovereffects;
+        }
+    }
+
+}
+
+.header_hero {
+    width: 100%;
+    height: 90vh;
+    // margin-left: 7rem;
+    background-color: $main-color;
+
+    &_text {
+        // width: inherit;
+
+        height: 90vh;
+        @include content_center(flex-start);
+
+        & h2 {
+            color: $text-color;
+            font-size: 5rem;
+            margin-bottom: 3rem;
+            line-height: 150%;
+            font-weight: 600;
+
+            & span {
+                color: $primary-color;
+                text-transform: capitalize;
+            }
+        }
+
+        & p {
+            font-size: 1.5rem;
+            color: $text-color;
+            margin-bottom: 5rem;
+        }
+
+        & .header_text_btn {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: row;
+
+            & a {
+                @include mybtn;
+
+                &:hover {
+                    @include hovereffects;
+                }
+            }
+
+            & #btn__2 {
+                margin-left: 2rem;
+            }
+        }
+    }
+
+    &__img {
+        margin-left: 29.5rem;
+        height: 90vh;
+        @include content_center(flex-start);
+        transition: all 0.3s ease;
+        animation: bus 10s linear infinite;
+
+        @keyframes bus {
+            0% {
+                margin-left: 29.5rem;
+            }
+
+            50% {
+                margin-left: 0rem;
+            }
+
+            100% {
+                margin-left: 29.5rem;
+            }
+        }
+    }
+}

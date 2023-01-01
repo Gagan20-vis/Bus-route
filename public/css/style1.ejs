@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus route</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600&display=swap");
+
+        body {
+            font-family: 'Nunito Sans', sans-serif;
+            font-weight: 300;
+        }
+
+        a,
+        a:hover {
+            text-decoration: none;
+        }
+
+        .main-header {
+            width: 100vw;
+            height: 5rem;
+            background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.5))) #0a183d;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)) #0a183d;
+        }
+
+        .main-header .navbar-brand {
+            color: #fff;
+            -webkit-animation: music 2s linear infinite;
+            animation: music 2s linear infinite;
+        }
+
+        .main-header .navbar-brand .fas {
+            font-size: 4rem;
+        }
+
+        @-webkit-keyframes music {
+            0% {
+                -webkit-transform: rotate(5deg);
+                transform: rotate(5deg);
+            }
+
+            25% {
+                -webkit-transform: rotate(-5deg);
+                transform: rotate(-5deg);
+            }
+
+            50% {
+                -webkit-transform: rotate(-5deg);
+                transform: rotate(-5deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(5deg);
+                transform: rotate(5deg);
+            }
+        }
+
+        @keyframes music {
+            0% {
+                -webkit-transform: rotate(5deg);
+                transform: rotate(5deg);
+            }
+
+            25% {
+                -webkit-transform: rotate(-5deg);
+                transform: rotate(-5deg);
+            }
+
+            50% {
+                -webkit-transform: rotate(-5deg);
+                transform: rotate(-5deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(5deg);
+                transform: rotate(5deg);
+            }
+        }
+
+        .main-header .navbar-nav {
+            padding-left: 15rem;
+        }
+
+        .main-header .navbar-nav .nav-item .nav-link {
+            font-size: 1.2rem;
+            color: #fff;
+            text-transform: uppercase;
+            padding-right: 3rem;
+        }
+
+        .main-header .navbar-nav .nav-item:last-child>.nav-link {
+            padding-right: 0%;
+        }
+
+        .main-header .nav-item:hover>.nav-link,
+        .main-header .navbar-brand:hover,
+        .main-header .navbar-brand:hover>.fas {
+            color: #b71540;
+        }
+
+        .main-header .my_btn {
+            padding: 0.4rem 3.0rem;
+            background: #b71540;
+            line-height: 2.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-transform: capitalize;
+            color: #fff;
+            border: none;
+            -webkit-box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+            -webkit-transition: all 0.3s ease 0s;
+            transition: all 0.3s ease 0s;
+            cursor: pointer;
+            border-radius: 4.5rem;
+            outline: none;
+        }
+
+        .main-header .my_btn:hover {
+            background: #9f5669;
+        }
+
+        .header_hero {
+            width: 100%;
+            height: 90vh;
+            background-color: #0a183d;
+        }
+
+        .header_hero_text {
+            height: 90vh;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: start;
+            -ms-flex-align: start;
+            align-items: flex-start;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+        }
+
+        .header_hero_text h2 {
+            color: #fff;
+            font-size: 5rem;
+            margin-bottom: 3rem;
+            line-height: 150%;
+            font-weight: 600;
+        }
+
+        .header_hero_text h2 span {
+            color: #b71540;
+            text-transform: capitalize;
+        }
+
+        .header_hero_text p {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 5rem;
+        }
+
+        .header_hero_text .header_text_btn {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: row;
+            flex-direction: row;
+        }
+
+        .header_hero_text .header_text_btn a {
+            padding: 0.4rem 3.0rem;
+            background: #b71540;
+            line-height: 2.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-transform: capitalize;
+            color: #fff;
+            border: none;
+            -webkit-box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+            -webkit-transition: all 0.3s ease 0s;
+            transition: all 0.3s ease 0s;
+            cursor: pointer;
+            border-radius: 4.5rem;
+            outline: none;
+        }
+
+        .header_hero_text .header_text_btn a:hover {
+            background: #9f5669;
+        }
+
+        .header_hero_text .header_text_btn #btn__2 {
+            margin-left: 2rem;
+        }
+
+        .header_hero__img {
+            margin-left: 29.5rem;
+            height: 90vh;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: start;
+            -ms-flex-align: start;
+            align-items: flex-start;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            -webkit-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+            -webkit-animation: bus 10s linear infinite;
+            animation: bus 10s linear infinite;
+        }
+
+        @-webkit-keyframes bus {
+            0% {
+                margin-left: 29.5rem;
+            }
+
+            50% {
+                margin-left: 0rem;
+            }
+
+            100% {
+                margin-left: 29.5rem;
+            }
+        }
+
+        @keyframes bus {
+            0% {
+                margin-left: 29.5rem;
+            }
+
+            50% {
+                margin-left: 0rem;
+            }
+
+            100% {
+                margin-left: 29.5rem;
+            }
+        }
+
+        /*# sourceMappingURL=style.css.map */
+    </style>
+</head>
+
+<body>
+
+</body>
+
+</html>
