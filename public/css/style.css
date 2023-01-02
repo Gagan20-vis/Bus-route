@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600&display=swap");
+
 body {
   font-family: 'Nunito Sans', sans-serif;
   font-weight: 300;
@@ -19,7 +20,7 @@ a:hover {
 .main-header .navbar-brand {
   color: #fff;
   -webkit-animation: music 2s linear infinite;
-          animation: music 2s linear infinite;
+  animation: music 2s linear infinite;
 }
 
 .main-header .navbar-brand .fas {
@@ -29,38 +30,44 @@ a:hover {
 @-webkit-keyframes music {
   0% {
     -webkit-transform: rotate(5deg);
-            transform: rotate(5deg);
+    transform: rotate(5deg);
   }
+
   25% {
     -webkit-transform: rotate(-5deg);
-            transform: rotate(-5deg);
+    transform: rotate(-5deg);
   }
+
   50% {
     -webkit-transform: rotate(-5deg);
-            transform: rotate(-5deg);
+    transform: rotate(-5deg);
   }
+
   100% {
     -webkit-transform: rotate(5deg);
-            transform: rotate(5deg);
+    transform: rotate(5deg);
   }
 }
 
 @keyframes music {
   0% {
     -webkit-transform: rotate(5deg);
-            transform: rotate(5deg);
+    transform: rotate(5deg);
   }
+
   25% {
     -webkit-transform: rotate(-5deg);
-            transform: rotate(-5deg);
+    transform: rotate(-5deg);
   }
+
   50% {
     -webkit-transform: rotate(-5deg);
-            transform: rotate(-5deg);
+    transform: rotate(-5deg);
   }
+
   100% {
     -webkit-transform: rotate(5deg);
-            transform: rotate(5deg);
+    transform: rotate(5deg);
   }
 }
 
@@ -75,13 +82,13 @@ a:hover {
   padding-right: 3rem;
 }
 
-.main-header .navbar-nav .nav-item:last-child > .nav-link {
+.main-header .navbar-nav .nav-item:last-child>.nav-link {
   padding-right: 0%;
 }
 
-.main-header .nav-item:hover > .nav-link,
+.main-header .nav-item:hover>.nav-link,
 .main-header .navbar-brand:hover,
-.main-header .navbar-brand:hover > .fas {
+.main-header .navbar-brand:hover>.fas {
   color: #b71540;
 }
 
@@ -95,7 +102,7 @@ a:hover {
   color: #fff;
   border: none;
   -webkit-box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-          box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   -webkit-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
   cursor: pointer;
@@ -119,15 +126,15 @@ a:hover {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
+  -ms-flex-align: start;
+  align-items: flex-start;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }
 
 .header_hero_text h2 {
@@ -154,15 +161,15 @@ a:hover {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
 }
 
 .header_hero_text .header_text_btn a {
@@ -175,20 +182,26 @@ a:hover {
   color: #fff;
   border: none;
   -webkit-box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-          box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   -webkit-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
   cursor: pointer;
   border-radius: 4.5rem;
   outline: none;
 }
+/* {
+  padding: 0.4rem 3.0rem;
+  line-height: 2.5rem;
+  text-transform: capitalize;
+  -webkit-box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+  outline: none;
+} */
 
 .header_hero_text .header_text_btn a:hover {
   background: #9f5669;
-}
-
-.header_hero_text .header_text_btn #btn__2 {
-  margin-left: 2rem;
 }
 
 .header_hero__img {
@@ -198,28 +211,30 @@ a:hover {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
+  -ms-flex-align: start;
+  align-items: flex-start;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
   -webkit-animation: bus 10s linear infinite;
-          animation: bus 10s linear infinite;
+  animation: bus 10s linear infinite;
 }
 
 @-webkit-keyframes bus {
   0% {
     margin-left: 29.5rem;
   }
+
   50% {
     margin-left: 0rem;
   }
+
   100% {
     margin-left: 29.5rem;
   }
@@ -229,11 +244,51 @@ a:hover {
   0% {
     margin-left: 29.5rem;
   }
+
   50% {
     margin-left: 0rem;
   }
+
   100% {
     margin-left: 29.5rem;
   }
 }
+.temp_form {
+  width: 100%;
+  position: relative;
+  margin: 0rem auto;
+}
+
+.temp_form input[type="text"] {
+  width: 100%;
+  padding: 1rem 5rem 1rem 2rem;
+  background: #1e202b;
+  color: white;
+  outline: none;
+  border: none;
+  font-size: 1.2rem;
+  border-radius: 3rem;
+  
+}
+::placeholder {
+  color: grey;
+}
+.temp_form input[type="submit"] {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  bottom: 5px;
+  border: none;
+  background: #b71540;
+  padding: 0.8rem 2.2rem;
+  border-radius: 3rem;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.temp_form input[type="submit"]:hover {
+  color: #b71540;
+  background-color: #fff;
+  
+} 
 /*# sourceMappingURL=style.css.map */

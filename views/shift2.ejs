@@ -12,27 +12,28 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        
-    <link rel="stylesheet" href="/assests/css/style.css">
+        <link rel="stylesheet" href="/assests/css/style.css">
     <title>Bus route</title>
 </head>
 
 <body>
+    <!-- navbar part -->
     <%- include('./partials/navbar'); -%>
-    
-    <!-- my header hero part -->
+
+    <!-- header part -->
     <div class="header_hero">
         <div class="contianer">
             <div class="row">
                 <div class="col-lg-6 col-10 mx-auto">
-                    <div class="header_hero_text" style="margin-left: 7rem;">
-                        <h2><span>Check</span> your Bus.</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, eligendi?</p>
-                        <div class="header_text_btn">
-                            <a href="shift1.ejs" alt="">Shift 1</a>
-                            <a href="shift2.ejs" alt="" >Shift 2</a>
-                        </div>
+                    <div class="header_hero_text" id="heading" style="margin-left: 7rem;">
+                        <h2 id="h2">Shift 2</h2>
+                        <p>Just put address here and get the all routed bus</p>
+                        <form class="temp_form">
+                            <input type="text" id="street" placeholder="Enter your Stop" autocomplete="off">
+                            <input type="submit" value="search">
+                        </form>
                     </div>
+    
                 </div>
                 <!-- right side images -->
                 <div class="col-lg-6 col-10 mx-auto">
