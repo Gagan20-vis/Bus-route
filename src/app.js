@@ -27,6 +27,12 @@ app.get("/shift2.ejs", (req, res) => {
 app.get("/about.ejs", (req,res) => {
     res.render("about.ejs");
 })
+app.get("/login.ejs",(req,res) => {
+    res.render("login.ejs");
+})
+app.get("/admin.ejs",(req,res) => {
+    res.render("admin.ejs");
+})
 
 app.listen(port, () => {
     console.log(`Listening to the port ${port}`);
