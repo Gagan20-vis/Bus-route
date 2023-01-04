@@ -10,7 +10,9 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 app.use('/assests', express.static('../public'));
 
-require("./db/conn")
+require("./db/conn");
+
+require('./login');
 
 app.get("/", (req, res) => {
     res.render("index");
@@ -24,15 +26,20 @@ app.get("/shift1.ejs", (req, res) => {
 app.get("/shift2.ejs", (req, res) => {
     res.render("shift2.ejs");
 })
-app.get("/about.ejs", (req,res) => {
+app.get("/about.ejs", (req, res) => {
     res.render("about.ejs");
 })
-app.get("/login.ejs",(req,res) => {
+app.get("/login.ejs", (req, res) => {
     res.render("login.ejs");
 })
-app.get("/admin.ejs",(req,res) => {
+app.get("/admin.ejs", (req, res) => {
     res.render("admin.ejs");
 })
+app.get("/admin_home.ejs",(req,res) => {
+    res.render("admin_home.ejs");
+})
+
+
 
 app.listen(port, () => {
     console.log(`Listening to the port ${port}`);
