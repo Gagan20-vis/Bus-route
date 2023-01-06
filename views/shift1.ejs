@@ -29,12 +29,48 @@
                     <div class="header_hero_text" id="heading" style="margin-left: 7rem;">
                         <h2 id="h2">Shift 1</h2>
                         <p>Just put address here and get the all routed bus</p>
-                        <form class="temp_form">
-                            <input type="text" id="street" placeholder="Enter your Stop" autocomplete="off">
-                            <input type="submit" value="search" name="search">
+                        <form class="temp_form" action="list" method="post">
+                            <input type="text" id="street" name="stop" placeholder="Enter your Stop" autocomplete="off">
+                            <input type="submit" value="search" id="submit_btn" name="search">
                         </form>
                     </div>
-    
+
+                    <div class="table">
+                        <div class="tbl-header">
+                            <table cellpadding="0" cellspacing="0" border="0">
+                                <thead>
+                                    <tr>
+                                        <th>Route Number</th>
+                                        <th>Bus Number</th>
+                                        <th>Bus Stop</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <div class="tbl-content">
+                            <table cellpadding="0" cellspacing="0" border="0">
+                                <tbody>
+                                    <tr>
+                                        <% if(userData.length != 0) {
+                                        var i = 1;
+                                        userData.forEach(function(data){
+                                        %>
+                                        <td><%= data.route_no %></td>
+                                        <td><%= data.bus_no %></td>
+                                        <td><%= data.address %></td>
+                                    </tr>
+                                    <% i++; }) %>
+                                    <% } else{%>
+                                    <tr>
+                                        <td>No Data found</td>
+                                        <td>No Data found </td>
+                                        <td>No Data found</td>
+                                    </tr>
+                                    <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
                 <!-- right side images -->
                 <div class="col-lg-6 col-10 mx-auto">

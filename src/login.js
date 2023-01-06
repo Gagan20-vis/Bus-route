@@ -22,7 +22,7 @@ app.post("/signup.ejs", (req, res) => {
     con.connect(function (err) {
         if (err) console.log(err);
         else {
-            sql = "select * from users where erp = '" + erp + "'";
+            sql = "select * from admin_login where erp = '" + erp + "'";
             con.query(sql, function (err, result) {
                 if (err) console.log(err);
                 else {
@@ -33,7 +33,7 @@ app.post("/signup.ejs", (req, res) => {
                             con.connect(function (err) {
                                 if (err) console.log(err);
                                 else {
-                                    sql = "INSERT INTO users(erp,email,user_pass) values('" + erp + "','" + email + "','" + password + "');";
+                                    sql = "INSERT INTO admin_login(erp,email,user_pass) values('" + erp + "','" + email + "','" + password + "');";
                                     con.query(sql, function (err, result) {
                                         if (err) console.log(err);
                                         else {
@@ -59,7 +59,7 @@ app.post("/login.ejs", (req, res) => {
     con.connect(function (err, rows) {
         if (err) console.log(err);
         else {
-            con.query("SELECT erp,user_pass FROM users WHERE erp = ? ", [username],
+            con.query("SELECT erp,user_pass FROM admin_login WHERE erp = ? ", [username],
                 function (err, rows) {
                     if (err)
                         console.log(err);
