@@ -141,7 +141,7 @@ a:hover {
 .header_hero_text h2 {
   color: #fff;
   font-size: 5rem;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   line-height: 150%;
   font-weight: 600;
 }
@@ -154,7 +154,7 @@ a:hover {
 .header_hero_text p {
   font-size: 1.5rem;
   color: #fff;
-  margin-bottom: 5rem;
+  margin-bottom: 2rem;
 }
 
 .header_hero_text .header_text_btn {
@@ -311,6 +311,7 @@ table {
   overflow-x: auto;
   margin-top: 0px;
   border: 1px solid rgba(255, 255, 255, 0.3);
+  background: black;
 }
 
 th {

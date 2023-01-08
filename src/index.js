@@ -1,57 +1,47 @@
-const express = require("express");
-const path = require("path");
-const app = express();
-const port = process.env.port || 7000;
-const con = require("./db/conn");;
+const express = require('express')
+const router = express.Router();
+const con = require("../database");
 
-const bodyParser = require("body-parser");
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
-
-
-app.set("views", "../views");
-app.set("view engine", "ejs");
-
-app.use(express.static(path.join(__dirname, '../public')));
-
-app.use('/assests', express.static('../public'));
-
-
-
-
-app.get("/", (req, res) => {
+router.get("/", (req, res) => {
     res.render("index");
 })
-app.get("/index.ejs", (req, res) => {
+router.get("/index.ejs", (req, res) => {
     res.render("index.ejs");
 })
-app.get("/shift1.ejs", (req, res) => {
-    res.render("shift1.ejs");
-})
-app.get("/shift2.ejs", (req, res) => {
+router.get("/shift2.ejs", (req, res) => {
     res.render("shift2.ejs");
 })
-app.get("/about.ejs", (req, res) => {
+router.get("/about.ejs", (req, res) => {
     res.render("about.ejs");
 })
-app.get("/login.ejs", (req, res) => {
+router.get("/login.ejs", (req, res) => {
     res.render("login.ejs");
 })
-app.get("/signup.ejs", (req, res) => {
+router.get("/signup.ejs", (req, res) => {
     res.render("signup.ejs");
 })
-app.get("/admin.ejs", (req, res) => {
+router.get("/admin.ejs", (req, res) => {
     res.render("admin.ejs");
 })
-app.get("/admin_home.ejs", (req, res) => {
+router.get("/admin_home.ejs", (req, res) => {
     res.render("admin_home.ejs");
 })
 
+router.get("/shift1.ejs",function(req, res){
+    con.connect(function(err) {
+        if(err) throw err;
+        let query = "select route_no,bus_no,address from shift_1";
+        con.query(query, function (err, result) {
+            if (err) {console.log(err);}
+            else{
+                res.render("shift1.ejs",{data:result})
+            }
+        })
+    })
+})
+
 //sign up code
-app.post("/signup.ejs", (req, res) => {
+router.post("/signup.ejs", (req, res) => {
     var erp = req.body.erp;
     var email = req.body.signup_email;
     var password = req.body.signup_pass;
@@ -91,7 +81,7 @@ app.post("/signup.ejs", (req, res) => {
 })
 
 //login code
-app.post("/login.ejs", (req, res) => {
+router.post("/login.ejs", (req, res) => {
     var username = req.body.login_user;
     var password = req.body.login_pass;
 
@@ -114,22 +104,6 @@ app.post("/login.ejs", (req, res) => {
     })
 })
 
-//bus information for admin
-app.get("/shift1.ejs", function (req, res,next) {
-    let stop = req.body.stop;
-    let query = "select route_no,bus_no,address from shift_1 where stop = '" + stop + "'";
-    con.query(query, function (err, data,fields) {
-        if (err) console.log(err);
-        else {
-            res.render('/shift1.ejs', {
-                title: 'User List',
-                userData: data,
-                error:false
-            });
-        }
-    })
-})
+// bus information for admin
 
-app.listen(port, () => {
-    console.log(`Listening to the port ${port}`);
-})
+module.exports = router;
