@@ -27,16 +27,38 @@ router.get("/admin_home.ejs", (req, res) => {
     res.render("admin_home.ejs");
 })
 
-router.get("/shift1.ejs",function(req, res){
-    con.connect(function(err) {
-        if(err) throw err;
+//bus list for students
+router.get("/shift1.ejs", function (req, res) {
+    con.connect(function (err) {
+        if (err) throw err;
         let query = "select route_no,bus_no,address from shift_1";
         con.query(query, function (err, result) {
-            if (err) {console.log(err);}
-            else{
-                res.render("shift1.ejs",{data:result})
+            if (err) {
+                console.log(err);
+            } else {
+                res.render("shift1.ejs", {
+                    data: result
+                })
             }
         })
+    })
+})
+
+router.get('/searching', function(req,res) {
+    let btn = req.query.search;
+    
+    con.connect(function(err){
+        if(err) throw err;
+        else{
+            let sql = "select route_no,bus_no,address where address like %"+btn+"%";
+
+            con.query(sql,function(err,result) {
+                if(err) throw err;
+                else{
+                    res.send(result);
+                }
+            });
+        }
     })
 })
 

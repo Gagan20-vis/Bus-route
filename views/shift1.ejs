@@ -29,7 +29,7 @@
                     <div class="header_hero_text" id="heading" style="margin-left: 7rem;">
                         <h2 id="h2">Shift 1</h2>
                         <p>Just put address here and get the all routed bus</p>
-                        <form class="temp_form" action="list" method="post">
+                        <form onsubmit ="return searching()" class="temp_form">
                             <input type="text" id="street" name="stop" placeholder="Enter your Stop" autocomplete="off">
                             <input type="submit" value="search" id="submit_btn" name="search">
                         </form>
@@ -46,7 +46,7 @@
                                     </thead>
                                 </table>
                             </div>
-                            <div class="tbl-content">
+                            <div class="tbl-content" >
                                 <table cellpadding="0" cellspacing="0" border="0">
                                     <tbody>
                                         <% if(data.length) { %>
@@ -60,7 +60,7 @@
                                         <% } else{%>
                                         <tr>
                                             <td>No Data found</td>
-                                            <td>No Data found </td>
+                                            <td>No Data found</td>
                                             <td>No Data found</td>
                                         </tr>
                                         <% } %>
@@ -93,3 +93,22 @@
 </body>
 
 </html>
+
+<script>
+    function searching() {
+        let btn = document.getElementById('submit_btn').value;
+
+        let req = new XMLHttpRequest();
+
+        req.open("GET","/searching?search="+name)
+
+        req.onreadystatechange = function() {
+            if(req.readyState == 4 && req.status == 200){
+                console.log(req.responseText);
+
+            }
+        }
+
+        return false;
+    }
+</script>
