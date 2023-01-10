@@ -8,9 +8,6 @@ router.get("/", (req, res) => {
 router.get("/index.ejs", (req, res) => {
     res.render("index.ejs");
 })
-router.get("/shift2.ejs", (req, res) => {
-    res.render("shift2.ejs");
-})
 router.get("/about.ejs", (req, res) => {
     res.render("about.ejs");
 })
@@ -24,7 +21,50 @@ router.get("/admin.ejs", (req, res) => {
     res.render("admin.ejs");
 })
 router.get("/admin_home.ejs", (req, res) => {
-    res.render("admin_home.ejs");
+    con.connect(function (err) {
+        if (err) throw err;
+        let query = "select route_no,bus_no,address from shift_1";
+        con.query(query, function (err, result) {
+            if (err) {
+                console.log(err);
+            } else {
+                res.render("admin_home.ejs", {
+                    data: result
+                })
+            }
+        })
+    })
+})
+
+router.get("/admin_shift1.ejs", (req, res) => {
+    con.connect(function (err) {
+        if (err) throw err;
+        let query = "select route_no,bus_no,address from shift_1";
+        con.query(query, function (err, result) {
+            if (err) {
+                console.log(err);
+            } else {
+                res.render("admin_shift1.ejs", {
+                    data: result
+                })
+            }
+        })
+    })
+})
+router.get("/admin_shift2.ejs", (req, res) => {
+    con.connect(function (err) {
+        if (err) throw err;
+        let query = "select route_no,bus_no,address from shift_2";
+        con.query(query, function (err, result) {
+            if (err) {
+                console.log(err);
+            } else {
+                res.render("admin_shift2.ejs", {
+                    data: result
+                })
+            }
+        })
+    })
 })
 
 //bus list for students
@@ -43,22 +83,19 @@ router.get("/shift1.ejs", function (req, res) {
         })
     })
 })
-
-router.get('/searching', function(req,res) {
-    let btn = req.query.search;
-    
-    con.connect(function(err){
-        if(err) throw err;
-        else{
-            let sql = "select route_no,bus_no,address where address like %"+btn+"%";
-
-            con.query(sql,function(err,result) {
-                if(err) throw err;
-                else{
-                    res.send(result);
-                }
-            });
-        }
+router.get("/shift2.ejs", function (req, res) {
+    con.connect(function (err) {
+        if (err) throw err;
+        let query = "select route_no,bus_no,address from shift_2";
+        con.query(query, function (err, result) {
+            if (err) {
+                console.log(err);
+            } else {
+                res.render("shift2.ejs", {
+                    data: result
+                })
+            }
+        })
     })
 })
 
@@ -125,7 +162,5 @@ router.post("/login.ejs", (req, res) => {
         }
     })
 })
-
-// bus information for admin
 
 module.exports = router;

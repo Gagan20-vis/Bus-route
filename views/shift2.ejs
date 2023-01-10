@@ -12,7 +12,8 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <link rel="stylesheet" href="/css/style.css">
+
+    <link rel="stylesheet" href="/css/style.css">
     <title>Bus route</title>
 </head>
 
@@ -29,11 +30,13 @@
                         <h2 id="h2">Shift 2</h2>
                         <p>Just put address here and get the all routed bus</p>
                         <form class="temp_form">
-                            <input type="text" id="street" placeholder="Enter your Stop" autocomplete="off">
-                            <input type="submit" value="search" name="search">
+                            <input type="text" id="myinput" placeholder="Enter your Stop" autocomplete="off"
+                                onkeyup="serarchFun()">
+                            <input type="submit" value="search" id="submit_btn" name="search">
                         </form>
+
+                        <%- include('./partials/bus_search'); -%>
                     </div>
-    
                 </div>
                 <!-- right side images -->
                 <div class="col-lg-6 col-10 mx-auto">
@@ -45,12 +48,16 @@
         </div>
     </div>
 
+    <!-- bootstrap script -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
     </script>
-</body>
 
+    <!-- custom script -->
+
+</body>
+    <script src="../js/style.js"></script>
 </html>

@@ -2,17 +2,21 @@ table {
     width: 100%;
     table-layout: fixed;
 }
+.row{
+    box-sizing: border-box;
+}
 
 .table {
     margin-left: 7.5rem;
-    width: 90%;
+    width: 50%;
     overflow: hidden;
     margin: auto;
     margin-top: 35px;
 }
 
 .tbl-header {
-    background-color: yellow;
+    background-color: black;
+    color: white;
 }
 
 .tbl-content {
@@ -22,6 +26,7 @@ table {
     border: 1px solid rgba(255, 255, 255, 0.3);
     background: red;
     overflow-y: scroll;
+    color: black;
 }
 
 th {

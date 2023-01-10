@@ -1,8 +1,21 @@
-let heading = document.getElementById("heading");
-let h2 = document.getElementById("h2")
-window.onload = function removeheight() {
-    heading.style.height = "46vh";  
-    h2.style.height = "46vh";
-    h2.style.marginBottom = "0rem";
-    heading.style.marginBottom = "0rem";
+const serarchFun = () => {
+    let filter = document.getElementById('myinput').value.toUpperCase();
+
+    let myTable = document.getElementById('myTable');
+
+    let tr = myTable.getElementsByTagName('tr');
+
+    for (var i = 0; i < tr.length; i++) {
+        let td = tr[i].getElementsByTagName('td')[2];
+
+        let textvalue = td.textContent || td.innerHTML;
+
+        if(td){
+            if (textvalue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
 }

@@ -93,25 +93,7 @@ a:hover {
   color: #b71540;
 }
 
-.main-header .my_btn {
-  padding: 0.4rem 3.0rem;
-  background: #b71540;
-  line-height: 2.5rem;
-  font-size: 1.5rem;
-  font-weight: bold;
-  text-transform: capitalize;
-  color: #fff;
-  border: none;
-  -webkit-box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
-  cursor: pointer;
-  border-radius: 4.5rem;
-  outline: none;
-}
-
-.main-header .my_btn:hover {
+j .main-header .my_btn:hover {
   background: #9f5669;
 }
 
@@ -188,10 +170,12 @@ a:hover {
   cursor: pointer;
   border-radius: 4.5rem;
   outline: none;
+  margin-right: 10px;
 }
 
 .header_hero_text .header_text_btn a:hover {
-  background: #9f5669;
+  color: #b71540;
+  background-color: #fff;
 }
 
 .header_hero__img {
@@ -293,16 +277,16 @@ table {
   width: 100%;
   table-layout: fixed;
 }
-.table{
+
+.table {
   margin-left: 7.5rem;
   width: 65%;
   overflow: hidden;
-  margin: auto;
-  /* display: none; */
 }
 
 .tbl-header {
   background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 8px 8px 0px 0px;
 }
 
 .tbl-content {
@@ -310,8 +294,11 @@ table {
   overflow-x: auto;
   margin-top: 0px;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  background: black;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)) #0a183d;
   overflow: scroll;
+  scrollbar-color: #b71540 #0a183d;
+  border-radius: 0px 0px 8px 8px;
+
 }
 
 th {
@@ -328,10 +315,11 @@ td {
   text-align: left;
   vertical-align: middle;
   font-weight: 300;
-  font-size: 12px;
+  font-size: 14px;
   color: #fff;
   border-bottom: solid 1px rgba(255, 255, 255, 0.1);
 }
+
 /* follow me template */
 .made-with-love {
   margin-top: 40px;
