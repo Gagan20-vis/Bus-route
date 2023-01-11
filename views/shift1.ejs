@@ -35,7 +35,40 @@
                             <input type="submit" value="search" id="submit_btn" name="search">
                         </form>
 
-                        <%- include('./partials/bus_search'); -%>
+                        <div class="table" id="table">
+                            <div class="tbl-header">
+                                <table cellpadding="0" cellspacing="0" border="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Route Number</th>
+                                            <th>Bus Number</th>
+                                            <th>Bus Stop</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <div class="tbl-content">
+                                <table cellpadding="0" cellspacing="0" border="0"  id="myTable">
+                                    <tbody>
+                                        <% if(data.length) { %>
+                                        <% for(var i = 0;i<data.length;i++){ %>
+                                        <tr>
+                                            <td><%= data[i].route_no %></td>
+                                            <td><%= data[i].bus_no %></td>
+                                            <td><%= data[i].address %></td>
+                                        </tr>
+                                        <% } %>
+                                        <% } else{%>
+                                        <tr>
+                                            <td>No Data found</td>
+                                            <td>No Data found</td>
+                                            <td>No Data found</td>
+                                        </tr>
+                                        <% } %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!-- right side images -->

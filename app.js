@@ -17,8 +17,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/assets', express.static('/public'));
 
 app.use('/', indexrouter);
-// app.use('/login.ejs', loginrouter);
-
 
 app.listen(port, () => {
     console.log(`Listening to the port ${port}`);
