@@ -1,6 +1,9 @@
-<div class="add_btn">
-    <button type="button" id="add_data" class="btn btn-success btn-sm float-end">Add</button>
+<div class="col">
+    <a href="/add" class="btn btn-success btn-sm float-end">Add</a>
 </div>
+
+<% if(action == 'add') { %>
+
 <div class="table" id="table">
     <div class="tbl-header">
         <table cellpadding="0" cellspacing="0" border="0">
@@ -38,10 +41,12 @@
     </div>
 </div>
 
+<% } else { %>
+
 <div class="modal" tabindex="-1" id="action_modal">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form method="post" id="sample_form">
+            <form method="post" id="sample_form" action="/admin_shift1/add_admin_shift1">
                 <div class="modal-header" id="dynamic_modal_title">
                     <h5 class="modal-title"></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -70,3 +75,5 @@
         </div>
     </div>
 </div>
+
+<% } %>
