@@ -1,15 +1,29 @@
-.table{
+.table {
     margin: auto;
 }
-.tbl-header{
+
+.tbl-header {
     margin-top: 20px;
     background: #0a183d;
 }
-.tbl-content{
+
+.tbl-content {
     height: 580px;
     overflow: hidden;
 }
-.add_btn{
+
+.add_btn {
     padding: 10px 20px;
     box-sizing: border-box;
+}
+
+.tbl-content {
+    overflow-x: auto;
+    margin-top: 0px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)) #0a183d;
+    overflow: scroll;
+    scrollbar-color: #b71540 #0a183d;
+    border-radius: 0px 0px 8px 8px;
+
 }

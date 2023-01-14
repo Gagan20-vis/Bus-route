@@ -4,6 +4,9 @@ const app = express();
 const port = process.env.port || 7000;
 const bodyParser = require("body-parser");
 const indexrouter = require("./src/index");
+let favicon = require('serve-favicon');
+
+app.use(favicon(__dirname + '/public/img/favicon.ico'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
