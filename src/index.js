@@ -31,11 +31,28 @@ router.get("/admin_shift1.ejs", (req, res) => {
                 console.log(err);
             } else {
                 res.render("admin_shift1.ejs", {
-                    data: result,
-                    action: 'add'
+                    data: result
                 })
             }
         })
+    })
+})
+
+router.post("/admin_shift1.ejs",(req,res) => {
+    con.connect(function(err) {
+        if(err) console.log(err);
+        else{
+            let route_no = req.body.route_no;
+            let bus_no = req.body.bus_no;
+            let address = req.body.address;
+            let query = "insert into shift_1(route_no,bus_no,address) values('"+route_no+"','"+bus_no+"','"+address+"');";
+            con.query(query,function(err){
+                if(err) console.log(err);
+                else{
+                    res.send('successfull');
+                }
+            })
+        }
     })
 })
 

@@ -19,3 +19,18 @@ const serarchFun = () => {
         }
     }
 }
+
+const add_data = document.getElementById('add_btn');
+add_data.addEventListener('click',function () {
+    OpenBootstrapPopup();
+});
+function OpenBootstrapPopup() {
+    $("#action_modal").modal('show');
+}
+const delete_data= document.getElementsById('delete_btn');
+delete_data.addEventListener('click',function () {
+    OpenBootstrapPopup2();
+});
+function OpenBootstrapPopup2() {
+    $("#delete_modal").modal('show');
+}

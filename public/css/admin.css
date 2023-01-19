@@ -1,10 +1,10 @@
 .table {
     margin: auto;
+    width: 90%;
 }
 
 .tbl-header {
-    margin-top: 20px;
-    background: #0a183d;
+    background: #5379e2;
 }
 
 .tbl-content {
@@ -12,18 +12,44 @@
     overflow: hidden;
 }
 
-.add_btn {
-    padding: 10px 20px;
-    box-sizing: border-box;
-}
-
 .tbl-content {
     overflow-x: auto;
-    margin-top: 0px;
     border: 1px solid rgba(255, 255, 255, 0.3);
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)) #0a183d;
     overflow: scroll;
     scrollbar-color: #b71540 #0a183d;
     border-radius: 0px 0px 8px 8px;
+}
 
+.addsearchbar{
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+
+#add_btn {
+    padding: 0.4rem 3.0rem;
+    background: #b71540;
+    line-height: 2.5rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: capitalize;
+    color: #fff;
+    border: none;
+    -webkit-box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    -webkit-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    border-radius: 4.5rem;
+    outline: none;
+    margin: auto;
+}
+
+#add_btn:hover {
+    color: #b71540;
+    background-color: white;
+}
+.temp_form{
+    margin: auto;
 }
