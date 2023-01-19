@@ -25,36 +25,56 @@ router.get("/admin_home.ejs", (req, res) => {
 router.get("/admin_shift1.ejs", (req, res) => {
     con.connect(function (err) {
         if (err) throw err;
-        let query = "select route_no,bus_no,address from shift_1";
+        let query = "select id,route_no,bus_no,address from shift_1";
         con.query(query, function (err, result) {
             if (err) {
                 console.log(err);
             } else {
                 res.render("admin_shift1.ejs", {
-                    data: result
+                    data: result,
+                    action: 'list'
                 })
             }
         })
     })
 })
 
-router.post("/admin_shift1.ejs",(req,res) => {
-    con.connect(function(err) {
-        if(err) console.log(err);
-        else{
+//add data by admin
+router.post("/admin_shift1.ejs", (req, res) => {
+    con.connect(function (err) {
+        if (err) console.log(err);
+        else {
             let route_no = req.body.route_no;
             let bus_no = req.body.bus_no;
             let address = req.body.address;
-            let query = "insert into shift_1(route_no,bus_no,address) values('"+route_no+"','"+bus_no+"','"+address+"');";
-            con.query(query,function(err){
-                if(err) console.log(err);
-                else{
+            let query = "insert into shift_1(route_no,bus_no,address) values('" + route_no + "','" + bus_no + "','" + address + "');";
+            con.query(query, function (err) {
+                if (err) console.log(err);
+                else {
                     res.send('successfull');
                 }
             })
         }
     })
 })
+
+//delete data by admin
+router.get('/delete/:id', function (req, res) {
+
+    var id = req.params.id;
+    con.connect(function (err) {
+        if (err) console.log(err);
+        else {
+            let query = `DELETE FROM shift_1 WHERE id = "${id}"`;
+            con.query(query, function (err) {
+                if (err) console.log(err);
+                else {
+                    res.send('successfull');
+                }
+            })
+        }
+    })
+});
 
 //admin shift2
 router.get("/admin_shift2.ejs", (req, res) => {

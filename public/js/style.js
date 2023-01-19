@@ -1,4 +1,4 @@
-const serarchFun = () => {
+const searchFun = () => {
     let filter = document.getElementById('myinput').value.toUpperCase();
 
     let myTable = document.getElementById('myTable');
@@ -20,6 +20,7 @@ const serarchFun = () => {
     }
 }
 
+//add data modal
 const add_data = document.getElementById('add_btn');
 add_data.addEventListener('click',function () {
     OpenBootstrapPopup();
@@ -27,10 +28,14 @@ add_data.addEventListener('click',function () {
 function OpenBootstrapPopup() {
     $("#action_modal").modal('show');
 }
-const delete_data= document.getElementsById('delete_btn');
-delete_data.addEventListener('click',function () {
-    OpenBootstrapPopup2();
-});
-function OpenBootstrapPopup2() {
-    $("#delete_modal").modal('show');
+
+//update data modal
+const update_data = document.getElementsByClassName('edit_btn');
+
+let myFunction2 = () => {
+    $('#update_modal').modal('show');
+}
+for (let index = 0; index < update_data.length; index++) {
+    update_data[index].addEventListener('click',myFunction2,false);
+    
 }
