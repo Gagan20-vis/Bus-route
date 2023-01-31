@@ -24,7 +24,7 @@ CREATE TABLE
 
 CREATE TABLE
     `bus` (
-        `number` varchar(10) NOT NULL,
+        `number` varchar(10) NOT NULL, 
         PRIMARY KEY (`number`)
     ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
 
