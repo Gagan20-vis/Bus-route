@@ -25,7 +25,7 @@
                                         <td><%= data[i].route_no %></td>
                                         <td><%= data[i].bus_no %></td>
                                         <td><%= data[i].address %></td>
-                                        <td><a href="#" class="btn btn-primary btn-sm edit_btn" >Edit</a>&nbsp;<a href="/delete/<%= data[i].id %>" class="btn btn-danger btn-sm delete_btn" >Delete</a></td>
+                                        <td><a href="/edit/<%= data[i].id %>" class="btn btn-primary btn-sm edit_btn" >Edit</a>&nbsp;<a href="/delete/<%= data[i].id %>" class="btn btn-danger btn-sm delete_btn" >Delete</a></td>
                                     </tr>
                                     <% } %>
                                     <% } else{%>
@@ -43,7 +43,12 @@
                 </div>
             </div>
             <!-- right side images -->
-            <div class="col-lg-6 col-10 mx-auto addsearchbar">
+            <div class="col-lg-6 col-10 mx-auto  addsearchbar">
+                <% if(message.length > 0) {%>
+                    <div class="alert alert-primary d-grid align-items-center">
+                        <%= message %>
+                    </div>
+                    <% } %>
                 <a href="#" id="add_btn">Add data</a>
                 <div class="addsearchbar">
                     <form class="temp_form">
@@ -89,45 +94,40 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- update data -->
-                <div class="modal fade" tabindex="-1" id="update_modal">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <form method="post" id="sample_form" action="" style="border-radius: 10px;">
-                                <div class="modal-header" id="dynamic_modal_title">
-                                    <h5 class="modal-title"></h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
+                <% if(action == 'edit') { %>
+                <div class="card">
+                    <div class="card-body">
+                        <form method="POST" action="/edit/<%= data.id %>">
+                            <div class="row">
+                                <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label class="form-label">Route Number</label>
-                                        <input type="text" placeholder="Route Number" name="route_no" id="route_no"
-                                            class="form-control" />
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Bus Number</label>
-                                        <input type="text" placeholder="bus Number" name="bus_no" id="bus_no"
-                                            class="form-control" />
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Address</label>
-                                        <input type="text" placeholder="Address" name="address" id="address"
-                                            class="form-control" />
+                                        <label>Route Number</label>
+                                        <input type="text" name="route_no_u" id="route_no" class="form-control" value="<%= data.route_no %>" />
                                     </div>
                                 </div>
-                                <div class="modal-footer">
-                                    <input type="hidden" name="id" id="id" />
-                                    <input type="hidden" name="action" id="action" value="Add" />
-                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-danger" id="action_button">Add</button>
-                                    <a href="/"></a>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label>Bus Number</label>
+                                        <input type="text" name="bus_no_u" id="bus_no" class="form-control" value="<%= data.bus_no %>" />
+                                    </div>
                                 </div>
-                            </form>
-                        </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label>Address</label>
+                                        <input type="text" name="address_u" id="address" class="form-control" value="<%= data.address %>" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <input type="submit" name="submit_button" class="btn btn-primary" value="Edit" />
+                            </div>
+                        </form>
                     </div>
                 </div>
+                <% } %>
             </div>
         </div>
     </div>
