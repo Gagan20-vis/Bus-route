@@ -1,3 +1,8 @@
+body{
+    background-image: url("../img/LNCT_Background.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
 .table {
     margin: auto;
     width: 90%;

@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,500,300,700");
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@300&family=Phudu&display=swap');
 
 body {
   font-family: 'Nunito Sans', sans-serif;
@@ -237,7 +238,7 @@ j .main-header .my_btn:hover {
 
 .temp_form input[type="text"] {
   width: 100%;
-  padding: 1rem 5rem 1rem 2rem;
+  padding: 1rem 14rem 1rem 2rem;
   background: #1e202b;
   color: white;
   outline: none;
@@ -306,6 +307,7 @@ th {
   text-align: left;
   font-weight: 500;
   font-size: 1.0rem;
+  font-family: 'Phudu', cursive;
   color: #fff;
   text-transform: uppercase;
 }
@@ -315,7 +317,8 @@ td {
   text-align: left;
   vertical-align: middle;
   font-weight: 300;
-  font-size: 14px;
+  font-family: 'Karla', sans-serif;
+  font-size: 17px;
   color: #fff;
   border-bottom: solid 1px rgba(255, 255, 255, 0.1);
 }

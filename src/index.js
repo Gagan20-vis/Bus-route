@@ -9,23 +9,23 @@ router.get("/", (req, res) => {
 router.get("/index", (req, res) => {
     res.render("index");
 })
-router.get("/about.ejs", (req, res) => {
+router.get("/about", (req, res) => {
     res.render("about");
 })
-router.get("/login.ejs", (req, res) => {
+router.get("/login", (req, res) => {
     res.render("login", {
         message: req.flash('success')
     });
 })
-router.get("/signup.ejs", (req, res) => {
-    res.render("signup.ejs" ,{session : req.session });
+router.get("/signup", (req, res) => {
+    res.render("signup" ,{session : req.session });
 })
-router.get("/admin_home.ejs", (req, res) => {
-    res.render("admin_home.ejs",{session:req.session});
+router.get("/admin_home", (req, res) => {
+    res.render("admin_home",{session:req.session});
 })
 
 //admin shift1
-router.get("/admin_shift1.ejs", (req, res) => {
+router.get("/admin_shift1", (req, res) => {
     con.connect(function (err) {
         if (err) throw err;
         let query = "select id,route_no,bus_no,address from shift_1";
@@ -33,7 +33,7 @@ router.get("/admin_shift1.ejs", (req, res) => {
             if (err) {
                 console.log(err);
             } else {
-                res.render("admin_shift1.ejs", {
+                res.render("admin_shift1", {
                     data: result,
                     action: 'list',
                     message: req.flash('success')
@@ -44,7 +44,7 @@ router.get("/admin_shift1.ejs", (req, res) => {
 })
 
 //add data by admin
-router.post("/admin_shift1.ejs", (req, res) => {
+router.post("/admin_shift1", (req, res) => {
     con.connect(function (err) {
         if (err) console.log(err);
         else {
@@ -56,7 +56,7 @@ router.post("/admin_shift1.ejs", (req, res) => {
                 if (err) console.log(err);
                 else {
                     req.flash('success', 'Data Inserted');
-                    res.redirect("/admin_shift1.ejs");
+                    res.redirect("/admin_shift1");
                 }
             })
         }
@@ -72,7 +72,7 @@ router.get('/delete/:id', function (req, res) {
         if (err) console.log(err);
         else {
             req.flash('success', 'Data Deleted');
-            res.redirect("/admin_shift1.ejs");
+            res.redirect("/admin_shift1");
         }
     })
 });
@@ -115,7 +115,7 @@ router.post('/edit/:id', function (req, res) {
 });
 
 //admin shift2
-router.get("/admin_shift2.ejs", (req, res) => {
+router.get("/admin_shift2", (req, res) => {
     con.connect(function (err) {
         if (err) throw err;
         let query = "select route_no,bus_no,address from shift_2";
@@ -123,8 +123,10 @@ router.get("/admin_shift2.ejs", (req, res) => {
             if (err) {
                 console.log(err);
             } else {
-                res.render("admin_shift2.ejs", {
-                    data: result
+                res.render("admin_shift2", {
+                    data: result,
+                    action: 'list',
+                    message: req.flash('success')
                 })
             }
         })
@@ -132,7 +134,7 @@ router.get("/admin_shift2.ejs", (req, res) => {
 })
 
 //bus list for students for shift1
-router.get("/shift1.ejs", function (req, res) {
+router.get("/shift1", function (req, res) {
     con.connect(function (err) {
         if (err) throw err;
         let query = "select route_no,bus_no,address from shift_1";
@@ -140,8 +142,9 @@ router.get("/shift1.ejs", function (req, res) {
             if (err) {
                 console.log(err);
             } else {
-                res.render("shift1.ejs", {
-                    data: result
+                res.render("shift1", {
+                    data: result,
+                    shift: "1"
                 })
             }
         })
@@ -149,7 +152,7 @@ router.get("/shift1.ejs", function (req, res) {
 })
 
 //bus list for students for shift2
-router.get("/shift2.ejs", function (req, res) {
+router.get("/shift2", function (req, res) {
     con.connect(function (err) {
         if (err) throw err;
         let query = "select route_no,bus_no,address from shift_2";
@@ -158,7 +161,8 @@ router.get("/shift2.ejs", function (req, res) {
                 console.log(err);
             } else {
                 res.render("shift2.ejs", {
-                    data: result
+                    data: result,
+                    shift: "2"
                 })
             }
         })
@@ -166,7 +170,7 @@ router.get("/shift2.ejs", function (req, res) {
 })
 
 //sign up code
-router.post("/signup.ejs", (req, res) => {
+router.post("/signup", (req, res) => {
     var erp = req.body.erp;
     var email = req.body.signup_email;
     var password = req.body.signup_pass;
@@ -205,7 +209,7 @@ router.post("/signup.ejs", (req, res) => {
 })
 
 //login code
-router.post("/login.ejs", async (req, res) => {
+router.post("/login", async (req, res) => {
     let username = req.body.login_user;
     let password = req.body.login_pass;
 
@@ -218,20 +222,11 @@ router.post("/login.ejs", async (req, res) => {
             res.redirect('/login.ejs');
         }
         else if (password === rows[0].user_pass) {
-            res.redirect('/admin_home.ejs');
+            res.redirect('/admin_home');
         } else {
             req.flash('success', "Wrong Credentials");
-            res.redirect('/login.ejs');
+            res.redirect('/login');
         }
     });
 })
-
-router.get('/logout', function(request, response, next){
-
-    request.session.destroy();
-
-    response.redirect("/");
-
-});
-
 module.exports = router;
