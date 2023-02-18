@@ -18,10 +18,14 @@ router.get("/login", (req, res) => {
     });
 })
 router.get("/signup", (req, res) => {
-    res.render("signup" ,{session : req.session });
+    res.render("signup", {
+        message: req.flash('success')
+    });
 })
 router.get("/admin_home", (req, res) => {
-    res.render("admin_home",{session:req.session});
+    res.render("admin_home", {
+        session: req.session
+    });
 })
 
 //admin shift1
@@ -160,7 +164,7 @@ router.get("/shift2", function (req, res) {
             if (err) {
                 console.log(err);
             } else {
-                res.render("shift2.ejs", {
+                res.render("shift2", {
                     data: result,
                     shift: "2"
                 })
@@ -175,35 +179,32 @@ router.post("/signup", (req, res) => {
     var email = req.body.signup_email;
     var password = req.body.signup_pass;
     var conf_pass = req.body.conf_pass;
-
-    con.connect(function (err) {
-        if (err) console.log(err);
+    sql = "select * from admin_login where erp = '" + erp + "'";
+    con.query(sql, async function (err, result) {
+        if (err);
         else {
-            sql = "select * from admin_login where erp = '" + erp + "'";
-            con.query(sql, async function (err, result) {
-                if (err) console.log(err);
-                else {
-                    if (result.length) {
-                        req.flash('fail', 'users already exists');
-                        res.redirect("/signup.ejs");
-                    } else {
-                        if (password === conf_pass) {
-                            const hash_pass = await bcrypt.hash(password, 10);
-                            sql = "INSERT INTO admin_login(erp,email,user_pass) values('" + erp + "','" + email + "','" + hash_pass + "');";
-                            con.query(sql, function (err, result) {
-                                if (err) console.log(err);
-                                else {
-                                    req.flash('success', 'You are signed up');
-                                    res.redirect("/login.ejs");
-                                }
-                            })
+            if (result.length) {
+                req.flash('Error', 'users already exists');
+                res.redirect("/signup");
+            } else {
+                if (password === conf_pass) {
+                    const hash_pass = await bcrypt.hash(password, 10);
+                    sql = "INSERT INTO admin_login(erp,email,user_pass) values('" + erp + "','" + email + "','" + hash_pass + "');";
+                    con.query(sql, function (err, result) {
+                        if (err) {
+                            req.flash('success', 'You are not authorized admin.');
+                            res.redirect("/signup");
                         } else {
-                            req.flash('warning', "password does not match");
-                            res.redirect("/signup.ejs");
+                            req.flash('success', 'You are signed up');
+                            res.redirect("/login");
                         }
-                    }
+                    })
+                } 
+                else {
+                    req.flash('success', "password does not match");
+                    res.redirect("/signup");
                 }
-            })
+            }
         }
     })
 })
@@ -214,19 +215,18 @@ router.post("/login", async (req, res) => {
     let password = req.body.login_pass;
 
     con.query("SELECT erp,user_pass FROM admin_login WHERE erp = ? ", [username],
-    function (err, rows) {
-        if (err)
-            console.log(err);
-        else if (rows.length==0) {
-            req.flash('success', "No user found");
-            res.redirect('/login.ejs');
-        }
-        else if (password === rows[0].user_pass) {
-            res.redirect('/admin_home');
-        } else {
-            req.flash('success', "Wrong Credentials");
-            res.redirect('/login');
-        }
-    });
+        function (err, rows) {
+            if (err)
+                console.log(err);
+            else if (rows.length == 0) {
+                req.flash('success', "No user found");
+                res.redirect('/login.ejs');
+            } else if (password === rows[0].user_pass) {
+                res.redirect('/admin_home');
+            } else {
+                req.flash('success', "Wrong Credentials");
+                res.redirect('/login');
+            }
+        });
 })
 module.exports = router;
