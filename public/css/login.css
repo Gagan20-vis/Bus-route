@@ -184,23 +184,6 @@ form .btn {
     position: relative;
     overflow: hidden;
 }
-
-/* form .btn .btn-layer {
-    height: 100%;
-    width: 300%;
-    position: absolute;
-    left: -100%;
-    background: #b71540;
-    border-radius: 15px;
-    transition: all 0.4s ease;
-    ;
-}
-
-form .btn:hover .btn-layer {
-
-    background: #bd4766;
-} */
-/* custom */
 form .btn .btn-layer {
     height: 100%;
     width: 300%;
@@ -232,7 +215,7 @@ form .btn .btn-layer::before {
     background: linear-gradient(
         83.2deg,
         #0d6efd 10.8%,
-        #0a183d 94.3%
+        #0d6efd 94.3%
     );
     transition: all 2s;
 }
@@ -251,7 +234,3 @@ form .btn input[type="submit"] {
     font-weight: 500;
     cursor: pointer;
 }
-
-
-
-
