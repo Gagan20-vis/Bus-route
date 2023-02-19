@@ -1,60 +1,63 @@
-body{
-    background-image: url("../img/LNCT_Background.jpg");
-    background-repeat: no-repeat;
-    background-size: 100%;
+body {
+  background-image: url("../img/LNCT_Background.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 .table {
-    margin: auto;
-    width: 90%;
+  margin: auto;
+  width: 90%;
 }
 
 .tbl-header {
-    background: #5379e2;
+  background: #5379e2;
 }
 
 .tbl-content {
-    height: 580px;
-    overflow: hidden;
+  height: 580px;
+  overflow: hidden;
 }
 
 .tbl-content {
-    overflow-x: auto;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)) #0a183d;
-    overflow: scroll;
-    scrollbar-color: #b71540 #0a183d;
-    border-radius: 0px 0px 8px 8px;
+  overflow-x: auto;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)) #0a183d;
+  overflow: scroll;
+  scrollbar-color: #b71540 #0a183d;
+  border-radius: 0px 0px 8px 8px;
 }
 
-.addsearchbar{
-    display: flex;
-    justify-content: center;
-    margin: auto;
+.addsearchbar {
+  display: grid;
+  justify-content: center;
+  margin: auto;
+  margin-top: 10px;
+  padding-top: 15px;
 }
 
 #add_btn {
-    padding: 0.4rem 3.0rem;
-    background: #b71540;
-    line-height: 2.5rem;
-    font-size: 1.5rem;
-    font-weight: bold;
-    text-transform: capitalize;
-    color: #fff;
-    border: none;
-    -webkit-box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-    -webkit-transition: all 0.3s ease 0s;
-    transition: all 0.3s ease 0s;
-    cursor: pointer;
-    border-radius: 4.5rem;
-    outline: none;
-    margin: auto;
+  padding: 0.4rem 3rem;
+  background: #b71540;
+  line-height: 2.5rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-transform: capitalize;
+  color: #fff;
+  border: none;
+  -webkit-box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  border-radius: 4.5rem;
+  outline: none;
+  margin: auto;
 }
 
 #add_btn:hover {
-    color: #b71540;
-    background-color: white;
+  color: #b71540;
+  background-color: white;
 }
-.temp_form{
-    margin: auto;
+.temp_form {
+  margin: auto;
+  margin-bottom: 20px;
 }
