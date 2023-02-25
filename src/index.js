@@ -49,20 +49,16 @@ router.get("/admin_shift1", (req, res) => {
 
 //add data by admin
 router.post("/admin_shift1", (req, res) => {
-    con.connect(function (err) {
-        if (err) console.log(err);
-        else {
-            let route_no = req.body.route_no;
-            let bus_no = req.body.bus_no;
-            let address = req.body.address;
-            let query = "insert into shift_1(route_no,bus_no,address) values('" + route_no + "','" + bus_no + "','" + address + "');";
-            con.query(query, function (err) {
-                if (err) console.log(err);
-                else {
-                    req.flash('success', 'Data Inserted');
-                    res.redirect("/admin_shift1");
-                }
-            })
+    let route_no = req.body.route_no;
+    let bus_no = req.body.bus_no;
+    let address = req.body.address;
+    let query = "insert into shift_1(route_no,bus_no,address) values('" + route_no + "','" + bus_no + "','" + address + "');";
+    con.query(query, function (err) {
+        if (err) {
+            console.log(err);
+        } else {
+            req.flash('success', 'Data Inserted');
+            res.redirect("/admin_shift1");
         }
     })
 })
@@ -113,7 +109,7 @@ router.post('/edit/:id', function (req, res) {
         if (err) console.log(err);
         else {
             req.flash('success', 'Data Updated');
-            res.redirect('/admin_shift1.ejs');
+            res.redirect('/admin_shift1');
         }
     })
 });
@@ -136,7 +132,21 @@ router.get("/admin_shift2", (req, res) => {
         })
     })
 })
-
+//add data by admin
+router.post("/admin_shift2", (req, res) => {
+    let route_no = req.body.route_no;
+    let bus_no = req.body.bus_no;
+    let address = req.body.address;
+    let query = "insert into shift_2(route_no,bus_no,address) values('" + route_no + "','" + bus_no + "','" + address + "');";
+    con.query(query, function (err) {
+        if (err) {
+            console.log(err);
+        } else {
+            req.flash('success', 'Data Inserted');
+            res.redirect("/admin_shift2");
+        }
+    })
+})
 //bus list for students for shift1
 router.get("/shift1", function (req, res) {
     con.connect(function (err) {
@@ -199,8 +209,7 @@ router.post("/signup", (req, res) => {
                             res.redirect("/login");
                         }
                     })
-                } 
-                else {
+                } else {
                     req.flash('success', "password does not match");
                     res.redirect("/signup");
                 }
@@ -215,18 +224,24 @@ router.post("/login", async (req, res) => {
     let password = req.body.login_pass;
 
     con.query("SELECT erp,user_pass FROM admin_login WHERE erp = ? ", [username],
-        function (err, rows) {
+        async function (err, rows) {
             if (err)
                 console.log(err);
             else if (rows.length == 0) {
                 req.flash('success', "No user found");
-                res.redirect('/login.ejs');
-            } else if (password === rows[0].user_pass) {
-                res.redirect('/admin_home');
-            } else {
-                req.flash('success', "Wrong Credentials");
                 res.redirect('/login');
             }
+            else
+            {
+                const isMatch = await bcrypt.compare(password, rows[0].user_pass);
+                if (isMatch) {
+                    res.redirect('/admin_home');
+                } else {
+                    req.flash('success', "Wrong Credentials");
+                    res.redirect('/login');
+                }
+            }
+            
         });
 })
 module.exports = router;
