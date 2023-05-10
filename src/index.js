@@ -2,6 +2,13 @@ const express = require('express')
 const router = express.Router();
 const con = require("../database");
 const bcrypt = require("bcrypt");
+const sessionChecker = (req, res, next) => {
+    if (req.session.userId && req.cookies.sessionId) {
+        next();
+    } else {
+        res.redirect('/login');
+    }
+}
 
 router.get("/", (req, res) => {
     res.render("index");
@@ -22,14 +29,12 @@ router.get("/signup", (req, res) => {
         message: req.flash('success')
     });
 })
-router.get("/admin_home", (req, res) => {
-    res.render("admin_home", {
-        session: req.session
-    });
+router.get("/admin_home", sessionChecker, (req, res) => {
+    res.render("admin_home");
 })
 
 //admin shift1
-router.get("/admin_shift1", (req, res) => {
+router.get("/admin_shift1", sessionChecker, (req, res) => {
     con.connect(function (err) {
         if (err) throw err;
         let query = "select id,route_no,bus_no,address from shift_1";
@@ -48,7 +53,7 @@ router.get("/admin_shift1", (req, res) => {
 })
 
 //add data by admin
-router.post("/admin_shift1", (req, res) => {
+router.post("/admin_shift1", sessionChecker, (req, res) => {
     let route_no = req.body.route_no;
     let bus_no = req.body.bus_no;
     let address = req.body.address;
@@ -64,7 +69,7 @@ router.post("/admin_shift1", (req, res) => {
 })
 
 //delete data by admin
-router.get('/delete/:id', function (req, res) {
+router.get('/delete/:id', sessionChecker, function (req, res) {
 
     let id = req.params.id;
     let query = `DELETE FROM shift_1 WHERE id = "${id}"`;
@@ -76,7 +81,7 @@ router.get('/delete/:id', function (req, res) {
         }
     })
 });
-router.get('/edit/:id', function (req, res) {
+router.get('/edit/:id', sessionChecker, function (req, res) {
 
     let id = req.params.id;
     let query = `SELECT * FROM shift_1 WHERE id = "${id}"`;
@@ -92,7 +97,7 @@ router.get('/edit/:id', function (req, res) {
     })
 });
 //delete data by admin
-router.post('/edit/:id', function (req, res) {
+router.post('/edit/:id', sessionChecker, function (req, res) {
 
     let id = req.params.id;
     let route_no = req.body.route_no_u;
@@ -115,7 +120,7 @@ router.post('/edit/:id', function (req, res) {
 });
 
 //admin shift2
-router.get("/admin_shift2", (req, res) => {
+router.get("/admin_shift2", sessionChecker, (req, res) => {
     con.connect(function (err) {
         if (err) throw err;
         let query = "select route_no,bus_no,address from shift_2";
@@ -133,7 +138,7 @@ router.get("/admin_shift2", (req, res) => {
     })
 })
 //add data by admin
-router.post("/admin_shift2", (req, res) => {
+router.post("/admin_shift2",sessionChecker, (req, res) => {
     let route_no = req.body.route_no;
     let bus_no = req.body.bus_no;
     let address = req.body.address;
@@ -148,7 +153,7 @@ router.post("/admin_shift2", (req, res) => {
     })
 })
 //bus list for students for shift1
-router.get("/shift1", function (req, res) {
+router.get("/shift1", sessionChecker, function (req, res) {
     con.connect(function (err) {
         if (err) throw err;
         let query = "select route_no,bus_no,address from shift_1";
@@ -166,7 +171,7 @@ router.get("/shift1", function (req, res) {
 })
 
 //bus list for students for shift2
-router.get("/shift2", function (req, res) {
+router.get("/shift2",sessionChecker, function (req, res) {
     con.connect(function (err) {
         if (err) throw err;
         let query = "select route_no,bus_no,address from shift_2";
@@ -184,7 +189,7 @@ router.get("/shift2", function (req, res) {
 })
 
 //sign up code
-router.post("/signup", (req, res) => {
+router.post("/signup",(req, res) => {
     var erp = req.body.erp;
     var email = req.body.signup_email;
     var password = req.body.signup_pass;
@@ -222,7 +227,6 @@ router.post("/signup", (req, res) => {
 router.post("/login", async (req, res) => {
     let username = req.body.login_user;
     let password = req.body.login_pass;
-
     con.query("SELECT erp,user_pass FROM admin_login WHERE erp = ? ", [username],
         async function (err, rows) {
             if (err)
@@ -235,13 +239,14 @@ router.post("/login", async (req, res) => {
             {
                 const isMatch = await bcrypt.compare(password, rows[0].user_pass);
                 if (isMatch) {
+                    req.session.userId = user.id;
+                    res.cookie('sessionId', req.session.id);
                     res.redirect('/admin_home');
                 } else {
                     req.flash('success', "Wrong Credentials");
                     res.redirect('/login');
                 }
             }
-            
         });
 })
 module.exports = router;
