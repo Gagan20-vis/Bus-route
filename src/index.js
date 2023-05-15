@@ -239,7 +239,7 @@ router.post("/login", async (req, res) => {
             {
                 const isMatch = await bcrypt.compare(password, rows[0].user_pass);
                 if (isMatch) {
-                    req.session.userId = user.id;
+                    req.session.userId = username;
                     res.cookie('sessionId', req.session.id);
                     res.redirect('/admin_home');
                 } else {
@@ -249,4 +249,13 @@ router.post("/login", async (req, res) => {
             }
         });
 })
+
+// router.get('/logout', (req, res) => {
+//     req.session.destroy((err) => {
+//       if (err) console.log(err);
+//       res.clearCookie('sessionid');
+//       res.sendStatus(200);
+//     });
+// });
+  
 module.exports = router;
