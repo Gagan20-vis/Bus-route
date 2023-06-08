@@ -2,13 +2,6 @@ const express = require('express')
 const router = express.Router();
 const con = require("../database");
 const bcrypt = require("bcrypt");
-const sessionChecker = (req, res, next) => {
-    if (req.session.userId && req.cookies.sessionId) {
-        next();
-    } else {
-        res.redirect('/login');
-    }
-}
 
 router.get("/", (req, res) => {
     res.render("index");
@@ -29,12 +22,12 @@ router.get("/signup", (req, res) => {
         message: req.flash('success')
     });
 })
-router.get("/admin_home", sessionChecker, (req, res) => {
+router.get("/admin_home", (req, res) => {
     res.render("admin_home");
 })
 
 //admin shift1
-router.get("/admin_shift1", sessionChecker, (req, res) => {
+router.get("/admin_shift1", (req, res) => {
     con.connect(function (err) {
         if (err) throw err;
         let query = "select id,route_no,bus_no,address from shift_1";
@@ -53,7 +46,7 @@ router.get("/admin_shift1", sessionChecker, (req, res) => {
 })
 
 //add data by admin
-router.post("/admin_shift1", sessionChecker, (req, res) => {
+router.post("/admin_shift1", (req, res) => {
     let route_no = req.body.route_no;
     let bus_no = req.body.bus_no;
     let address = req.body.address;
@@ -61,6 +54,7 @@ router.post("/admin_shift1", sessionChecker, (req, res) => {
     con.query(query, function (err) {
         if (err) {
             console.log(err);
+            req.flash('Eror', 'Data cannot be insert');
         } else {
             req.flash('success', 'Data Inserted');
             res.redirect("/admin_shift1");
@@ -69,7 +63,7 @@ router.post("/admin_shift1", sessionChecker, (req, res) => {
 })
 
 //delete data by admin
-router.get('/delete/:id', sessionChecker, function (req, res) {
+router.get('/delete/:id', function (req, res) {
 
     let id = req.params.id;
     let query = `DELETE FROM shift_1 WHERE id = "${id}"`;
@@ -81,7 +75,7 @@ router.get('/delete/:id', sessionChecker, function (req, res) {
         }
     })
 });
-router.get('/edit/:id', sessionChecker, function (req, res) {
+router.get('/edit/:id', function (req, res) {
 
     let id = req.params.id;
     let query = `SELECT * FROM shift_1 WHERE id = "${id}"`;
@@ -97,7 +91,7 @@ router.get('/edit/:id', sessionChecker, function (req, res) {
     })
 });
 //delete data by admin
-router.post('/edit/:id', sessionChecker, function (req, res) {
+router.post('/edit/:id', function (req, res) {
 
     let id = req.params.id;
     let route_no = req.body.route_no_u;
@@ -120,7 +114,7 @@ router.post('/edit/:id', sessionChecker, function (req, res) {
 });
 
 //admin shift2
-router.get("/admin_shift2", sessionChecker, (req, res) => {
+router.get("/admin_shift2", (req, res) => {
     con.connect(function (err) {
         if (err) throw err;
         let query = "select route_no,bus_no,address from shift_2";
@@ -138,7 +132,7 @@ router.get("/admin_shift2", sessionChecker, (req, res) => {
     })
 })
 //add data by admin
-router.post("/admin_shift2",sessionChecker, (req, res) => {
+router.post("/admin_shift2", (req, res) => {
     let route_no = req.body.route_no;
     let bus_no = req.body.bus_no;
     let address = req.body.address;
@@ -153,7 +147,7 @@ router.post("/admin_shift2",sessionChecker, (req, res) => {
     })
 })
 //bus list for students for shift1
-router.get("/shift1", sessionChecker, function (req, res) {
+router.get("/shift1", function (req, res) {
     con.connect(function (err) {
         if (err) throw err;
         let query = "select route_no,bus_no,address from shift_1";
@@ -171,7 +165,7 @@ router.get("/shift1", sessionChecker, function (req, res) {
 })
 
 //bus list for students for shift2
-router.get("/shift2",sessionChecker, function (req, res) {
+router.get("/shift2",function (req, res) {
     con.connect(function (err) {
         if (err) throw err;
         let query = "select route_no,bus_no,address from shift_2";
@@ -249,13 +243,4 @@ router.post("/login", async (req, res) => {
             }
         });
 })
-
-// router.get('/logout', (req, res) => {
-//     req.session.destroy((err) => {
-//       if (err) console.log(err);
-//       res.clearCookie('sessionid');
-//       res.sendStatus(200);
-//     });
-// });
-  
 module.exports = router;
